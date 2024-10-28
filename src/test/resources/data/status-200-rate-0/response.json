@@ -1,0 +1,44 @@
+{
+    "monthlyPayments": [
+      {
+        "month": 1,
+        "payment": 1000
+      },
+      {
+        "month": 2,
+        "payment": 1000
+      },
+      {
+        "month": 3,
+        "payment": 1000
+      },
+      {
+        "month": 4,
+        "payment": 1000
+      },
+      {
+        "month": 5,
+        "payment": 1000
+      },
+      {
+        "month": 6,
+        "payment": 1000
+      },
+      {
+        "month": 7,
+        "payment": 1000
+      },
+      {
+        "month": 8,
+        "payment": 1000
+      },
+      {
+        "month": 9,
+        "payment": 1000
+      },
+      {
+        "month": 10,
+        "payment": 1000
+      }
+    ]
+}

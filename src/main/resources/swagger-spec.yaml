@@ -1,0 +1,95 @@
+---
+openapi: 3.0.3
+info:
+  title: Leanpay API
+  description: "<h1>Leanpay API for a Loan Calculator</h1>"
+  version: 0.0.1
+paths:
+  /v1/installment-plan:
+    post:
+      tags:
+        - calculate
+      description: |
+        Calculate installment plan
+      operationId: calculateInstallmentPlan
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanRequest'
+      responses:
+        "200":
+          description: |
+            Installment plan is successfully persisted to db.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TotalPayment'
+        "400":
+          description: Error when working with data provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    LoanRequest:
+      title: Loan Request
+      type: object
+      required:
+        - amount
+        - annualInterestPercent
+        - numberOfMonths
+      properties:
+        amount:
+          type: integer
+          example: 1000
+        annualInterestPercent:
+          type: integer
+          example: 5
+        numberOfMonths:
+          type: integer
+          example: 10
+
+    TotalPayment:
+      title: total payment
+      type: object
+      properties:
+        monthlyPayments:
+          minItems: 1
+          type: array
+          description: |
+          items:
+            $ref: '#/components/schemas/MonthlyPayment'
+
+    MonthlyPayment:
+      title: Result
+      type: object
+      properties:
+        month:
+          type: integer
+        payment:
+          type: number
+
+    ErrorResponse:
+      title: Error Response
+      required:
+        - message
+        - statusCode
+        - statusCodeText
+      type: object
+      properties:
+        message:
+          type: string
+        statusCode:
+          type: integer
+          format: int32
+          example: 400
+        statusCodeText:
+          maxLength: 50
+          type: string
+          example: Bad Request
+
+
+
